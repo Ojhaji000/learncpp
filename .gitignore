@@ -1,0 +1,12 @@
+# Build folders
+build/
+out/
+
+# Compiled files
+*.o
+*.exe
+*.obj
+
+# IDE/editor files
+.vscode/
+*.log
