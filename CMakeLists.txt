@@ -1,8 +1,15 @@
-cmake_minimum_required(VERSION 3.10.0)
-project(learncpp VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.13.4)
+project(learncpp LANGUAGES CXX)
 
-add_executable(learncpp main.cpp)
+find_package(deal.II 9.6.0 REQUIRED
+  HINTS /usr/share/cmake/deal.II $ENV{DEAL_II_DIR}
+)
+
+deal_ii_initialize_cached_variables()
+
+add_executable(main main.cc)
+
+deal_ii_setup_target(main)
 
 include(CTest)
 enable_testing()
-
