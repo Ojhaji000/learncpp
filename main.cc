@@ -1,6 +1,8 @@
-#include <deal.ii/base/logstream.h>
-#include <deal.ii/lac/vector.h>
-
+#include <deal.II/grid/tria.h>
+// #include <deal.ii/base/logstream.h>
+// #include <deal.ii/lac/vector.h>
+#include <deal.II/lac/vector.h>
+#include <deal.II/base/logstream.h>
 #include <cmath>
 #include <iostream>
 #include <fstream>
@@ -11,16 +13,16 @@
 using namespace dealii;
 
 // Problem parameters (see Python file comments)
-const double b   = 10.0; // m
-const double h   = 0.5;  // m
-const double k   = 1000.0; // N/m
-const double EA0 = 5.0e6;  // N
-const double DF  = 50.0; // N (External load increment)
+const double b= 10.0; // m
+const double h= 0.5;// m
+const double k= 1000.0;// N/m
+const double EA0 = 5.0e6;// N
+const double DF= 50.0; // N (External load increment)
 
 // Solver parameters
-const int    N       = 30;
-const double tol     = 1.0e-6;
-const int    iterMax = 5;
+const int N=30;
+const double tol=1.0e-6;
+const int iterMax= 5;
 
 // =================================================================
 // 1. Governing Equations (Scalar Functions)
@@ -41,9 +43,9 @@ double truss_length(const double v)
  */
 double internal_force(const double v)
 {
-  const double l_v  = truss_length(v);
-  const double l_0  = truss_length(0.0);
-  const double delta_l = l_v - l_0;
+  const double l_v=truss_length(v);
+  const double l_0=truss_length(0.0);
+  const double delta_l = l_v-l_0;
 
   // Axial force component (Truss)
   const double F_axial = -EA0 * (h - v) / l_v * (delta_l / l_0);
@@ -89,6 +91,7 @@ private:
   void post_process() const;
 
   // Displacement vector (size 1 for single DoF)
+  // std::vector<double> displacemen;
   Vector<double> displacement;
 
   // Store pairs of {displacement, force} for plotting

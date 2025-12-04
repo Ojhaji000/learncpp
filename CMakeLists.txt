@@ -11,5 +11,5 @@ add_executable(main main.cc)
 
 deal_ii_setup_target(main)
 
-include(CTest)
-enable_testing()
+# include(CTest)
+# enable_testing()
